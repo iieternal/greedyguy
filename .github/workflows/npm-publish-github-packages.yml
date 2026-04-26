@@ -1,0 +1,258 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package to publish (leave empty to publish all)'
+        required: false
+        type: choice
+        options:
+          - ''
+          - greedyguy
+          - greedyguy-wasm
+          - greedyguy-web
+          - gg-cache
+          - gg-cache-expo
+      dry_run:
+        description: 'Dry run (no actual publish)'
+        required: false
+        type: boolean
+        default: false
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: '20'
+
+jobs:
+  # ─── Determine which packages changed / should be published ───────────────
+  detect:
+    name: Detect packages to publish
+    runs-on: ubuntu-latest
+    outputs:
+      packages: ${{ steps.set.outputs.packages }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve package list
+        id: set
+        run: |
+          ALL='["greedyguy","greedyguy-wasm","greedyguy-web","gg-cache","gg-cache-expo"]'
+
+          # Manual dispatch with a specific package selected
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" && -n "${{ inputs.package }}" ]]; then
+            echo "packages=[\"${{ inputs.package }}\"]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # On a release tag, detect which packages actually changed since the
+          # previous release tag so we only publish what's new.
+          if [[ "${{ github.event_name }}" == "release" ]]; then
+            PREV_TAG=$(git tag --sort=-version:refname | grep -v "^${{ github.ref_name }}$" | head -1)
+            if [[ -z "$PREV_TAG" ]]; then
+              echo "No previous tag found — publishing all packages"
+              echo "packages=$ALL" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+
+            CHANGED=$(git diff --name-only "$PREV_TAG" HEAD)
+            PKGS="[]"
+            for pkg in greedyguy greedyguy-wasm greedyguy-web gg-cache gg-cache-expo; do
+              if echo "$CHANGED" | grep -q "^$pkg/"; then
+                PKGS=$(echo "$PKGS" | jq --arg p "$pkg" '. + [$p]')
+              fi
+            done
+
+            if [[ "$PKGS" == "[]" ]]; then
+              echo "No package directories changed — defaulting to all"
+              echo "packages=$ALL" >> "$GITHUB_OUTPUT"
+            else
+              echo "packages=$PKGS" >> "$GITHUB_OUTPUT"
+            fi
+            exit 0
+          fi
+
+          # Fallback: publish everything
+          echo "packages=$ALL" >> "$GITHUB_OUTPUT"
+
+  # ─── Build the WASM binary (needed by greedyguy-wasm and greedyguy-web) ───
+  build-wasm:
+    name: Build WASM binary
+    runs-on: ubuntu-latest
+    needs: detect
+    if: |
+      contains(fromJson(needs.detect.outputs.packages), 'greedyguy-wasm') ||
+      contains(fromJson(needs.detect.outputs.packages), 'greedyguy-web')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Emscripten
+        uses: actions/cache@v4
+        with:
+          path: ~/.emscripten_cache
+          key: emsdk-${{ hashFiles('greedyguy/Makefile', 'greedyguy/**/*.c', 'greedyguy/**/*.h') }}
+
+      - name: Install Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+
+      - name: Build WASM
+        working-directory: greedyguy
+        run: make wasm
+
+      - name: Upload WASM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-binary
+          path: |
+            greedyguy-wasm/dist/
+            greedyguy-web/dist/
+          retention-days: 1
+
+  # ─── Build the native C binary (needed by greedyguy Node wrapper) ─────────
+  build-native:
+    name: Build native binary (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    needs: detect
+    if: contains(fromJson(needs.detect.outputs.packages), 'greedyguy')
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build native binary
+        working-directory: greedyguy
+        run: make native
+
+      - name: Upload native binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-${{ matrix.os }}
+          path: greedyguy/bin/
+          retention-days: 1
+
+  # ─── Publish each package ─────────────────────────────────────────────────
+  publish:
+    name: Publish ${{ matrix.package }}
+    runs-on: ubuntu-latest
+    needs: [detect, build-wasm, build-native]
+    # Run even if build jobs were skipped (they're conditional)
+    if: always() && needs.detect.result == 'success'
+    permissions:
+      contents: read
+      id-token: write   # Required for npm provenance
+
+    strategy:
+      fail-fast: false  # Publish other packages even if one fails
+      matrix:
+        package: ${{ fromJson(needs.detect.outputs.packages) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+          cache-dependency-path: ${{ matrix.package }}/package-lock.json
+
+      # Restore WASM dist if this package needs it
+      - name: Download WASM artifact
+        if: matrix.package == 'greedyguy-wasm' || matrix.package == 'greedyguy-web'
+        uses: actions/download-artifact@v4
+        with:
+          name: wasm-binary
+
+      # Restore native binaries if this is the Node wrapper
+      - name: Download native binaries (Linux)
+        if: matrix.package == 'greedyguy'
+        uses: actions/download-artifact@v4
+        with:
+          name: native-ubuntu-latest
+          path: greedyguy/bin/linux/
+
+      - name: Download native binaries (macOS)
+        if: matrix.package == 'greedyguy'
+        uses: actions/download-artifact@v4
+        with:
+          name: native-macos-latest
+          path: greedyguy/bin/darwin/
+
+      - name: Download native binaries (Windows)
+        if: matrix.package == 'greedyguy'
+        uses: actions/download-artifact@v4
+        with:
+          name: native-windows-latest
+          path: greedyguy/bin/win32/
+
+      - name: Install dependencies
+        working-directory: ${{ matrix.package }}
+        run: npm ci
+
+      - name: Run tests
+        working-directory: ${{ matrix.package }}
+        run: npm test
+
+      - name: Check version not already published
+        id: version-check
+        working-directory: ${{ matrix.package }}
+        run: |
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VER=$(node -p "require('./package.json').version")
+          echo "name=$PKG_NAME" >> "$GITHUB_OUTPUT"
+          echo "version=$PKG_VER" >> "$GITHUB_OUTPUT"
+
+          if npm view "$PKG_NAME@$PKG_VER" version 2>/dev/null | grep -q "$PKG_VER"; then
+            echo "already_published=true" >> "$GITHUB_OUTPUT"
+            echo "⚠️  $PKG_NAME@$PKG_VER is already on npm — skipping"
+          else
+            echo "already_published=false" >> "$GITHUB_OUTPUT"
+            echo "✅  $PKG_NAME@$PKG_VER is new — will publish"
+          fi
+
+      - name: Publish to npm
+        if: steps.version-check.outputs.already_published == 'false'
+        working-directory: ${{ matrix.package }}
+        run: |
+          if [[ "${{ inputs.dry_run }}" == "true" ]]; then
+            npm publish --dry-run --access public --provenance
+          else
+            npm publish --access public --provenance
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Summary
+        run: |
+          PKG="${{ steps.version-check.outputs.name }}@${{ steps.version-check.outputs.version }}"
+          if [[ "${{ steps.version-check.outputs.already_published }}" == "true" ]]; then
+            echo "### ⏭️ Skipped \`$PKG\` — already published" >> "$GITHUB_STEP_SUMMARY"
+          elif [[ "${{ inputs.dry_run }}" == "true" ]]; then
+            echo "### 🧪 Dry-run: \`$PKG\`" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### ✅ Published \`$PKG\`" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+  # ─── Final status gate ────────────────────────────────────────────────────
+  status:
+    name: Publish complete
+    runs-on: ubuntu-latest
+    needs: publish
+    if: always()
+    steps:
+      - name: Check all jobs passed
+        run: |
+          if [[ "${{ needs.publish.result }}" == "failure" ]]; then
+            echo "One or more packages failed to publish"
+            exit 1
+          fi
+          echo "All packages published successfully (or skipped)"
