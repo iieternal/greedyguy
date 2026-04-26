@@ -48,6 +48,13 @@ function findBinary() {
         if (fs.existsSync(p)) { _binaryPath = p; return p; }
     }
 
+    // 2. Prebuilt binaries included in the npm package
+    const platform = process.platform; // 'linux', 'darwin', 'win32'
+    for (const name of BIN_NAMES) {
+        const p = path.join(pkgRoot, 'bin', platform, name);
+        if (fs.existsSync(p)) { _binaryPath = p; return p; }
+    }
+
     // 2. Search PATH
     try {
         const cmd  = process.platform === 'win32' ? 'where' : 'which';
