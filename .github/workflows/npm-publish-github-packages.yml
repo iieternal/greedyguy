@@ -104,7 +104,12 @@ jobs:
 
       - name: Build WASM
         working-directory: greedyguy
-        run: make wasm
+        run: |
+          chmod +x ./wasm/build.sh
+          ./wasm/build.sh
+          mkdir -p ../greedyguy-wasm/dist ../greedyguy-web/dist
+          cp ./wasm/dist/greedyguy.wasm ./wasm/dist/greedyguy.js ../greedyguy-wasm/dist/
+          cp ./wasm/dist/greedyguy.wasm ./wasm/dist/greedyguy.js ../greedyguy-web/dist/
 
       - name: Upload WASM artifact
         uses: actions/upload-artifact@v4
@@ -147,6 +152,7 @@ jobs:
     if: always() && needs.detect.result == 'success'
     permissions:
       contents: read
+      packages: write
       id-token: write   # Required for npm provenance
 
     strategy:
@@ -157,13 +163,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          registry-url: 'https://registry.npmjs.org'
-          cache: 'npm'
-          cache-dependency-path: ${{ matrix.package }}/package-lock.json
+          registry-url: 'https://npm.pkg.github.com'
 
       # Restore WASM dist if this package needs it
       - name: Download WASM artifact
@@ -196,15 +205,21 @@ jobs:
 
       - name: Install dependencies
         working-directory: ${{ matrix.package }}
-        run: npm ci
+        run: pnpm install
+
+      - name: Build
+        working-directory: ${{ matrix.package }}
+        run: pnpm run build --if-present
 
       - name: Run tests
         working-directory: ${{ matrix.package }}
-        run: npm test
+        run: pnpm test
 
       - name: Check version not already published
         id: version-check
         working-directory: ${{ matrix.package }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           PKG_NAME=$(node -p "require('./package.json').name")
           PKG_VER=$(node -p "require('./package.json').version")
@@ -213,23 +228,23 @@ jobs:
 
           if npm view "$PKG_NAME@$PKG_VER" version 2>/dev/null | grep -q "$PKG_VER"; then
             echo "already_published=true" >> "$GITHUB_OUTPUT"
-            echo "⚠️  $PKG_NAME@$PKG_VER is already on npm — skipping"
+            echo "⚠️  $PKG_NAME@$PKG_VER is already on GitHub Packages — skipping"
           else
             echo "already_published=false" >> "$GITHUB_OUTPUT"
             echo "✅  $PKG_NAME@$PKG_VER is new — will publish"
           fi
 
-      - name: Publish to npm
+      - name: Publish to GitHub Packages
         if: steps.version-check.outputs.already_published == 'false'
         working-directory: ${{ matrix.package }}
         run: |
           if [[ "${{ inputs.dry_run }}" == "true" ]]; then
-            npm publish --dry-run --access public --provenance
+            pnpm publish --dry-run --no-git-checks
           else
-            npm publish --access public --provenance
+            pnpm publish --no-git-checks
           fi
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Summary
         run: |

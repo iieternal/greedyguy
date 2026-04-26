@@ -2,7 +2,7 @@
 
 A byte-prediction compressor ecosystem. Context-mixing + arithmetic coding in a ~29 KB WASM binary — everywhere JavaScript runs.
 
-[![CI](https://github.com/iieternal/greedyguy/actions/workflows/ci.yml/badge.svg)](https://github.com/iieternal/greedyguy/actions)
+[![CI](https://github.com/iieternal/greedyguy/actions/workflows/npm-publish-github-packages.yml/badge.svg)](https://github.com/iieternal/greedyguy/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
