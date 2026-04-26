@@ -2,7 +2,7 @@
 
 A byte-prediction compressor ecosystem. Context-mixing + arithmetic coding in a ~29 KB WASM binary — everywhere JavaScript runs.
 
-[![CI](https://github.com/paultsunny/greedyguy/actions/workflows/ci.yml/badge.svg)](https://github.com/paultsunny/greedyguy/actions)
+[![CI](https://github.com/iieternal/greedyguy/actions/workflows/ci.yml/badge.svg)](https://github.com/iieternal/greedyguy/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
@@ -144,7 +144,7 @@ For detailed instructions on setting up the project and contributing, please see
 
 ```bash
 # Clone
-git clone https://github.com/paultsunny/greedyguy.git
+git clone https://github.com/iieternal/greedyguy.git
 cd greedyguy
 
 # Test all packages
