@@ -140,6 +140,8 @@ See each package's README for configuration details.
 
 ## Development
 
+For detailed instructions on setting up the project and contributing, please see [contributions.md](./contributions.md).
+
 ```bash
 # Clone
 git clone https://github.com/paultsunny/greedyguy.git
@@ -151,21 +153,6 @@ cd greedyguy-web  && npm test && cd ..
 cd gg-cache       && npm test && cd ..
 cd gg-cache-expo  && npm test && cd ..
 ```
-
-## Publishing
-
-Each package publishes independently to npm:
-
-```bash
-npm login
-cd greedyguy      && npm publish --access public && cd ..
-cd greedyguy-wasm && npm publish --access public && cd ..
-cd greedyguy-web  && npm publish --access public && cd ..
-cd gg-cache       && npm publish --access public && cd ..
-cd gg-cache-expo  && npm publish --access public && cd ..
-```
-
-CI auto-publishes on push to `master` when a package version is bumped. Add your `NPM_TOKEN` in GitHub repo **Settings → Secrets → Actions**.
 
 ## License
 
