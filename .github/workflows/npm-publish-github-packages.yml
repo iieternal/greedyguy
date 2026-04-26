@@ -251,9 +251,9 @@ jobs:
         working-directory: ${{ matrix.package }}
         run: |
           if [[ "${{ inputs.dry_run }}" == "true" ]]; then
-            pnpm publish --dry-run --no-git-checks
+            pnpm publish --dry-run --no-git-checks --registry https://npm.pkg.github.com/
           else
-            pnpm publish --no-git-checks
+            pnpm publish --no-git-checks --registry https://npm.pkg.github.com/
           fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
