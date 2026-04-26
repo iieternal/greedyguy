@@ -26,7 +26,7 @@ GreedyGuy is managed as a monorepo containing several packages:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/paultsunny/greedyguy.git
+   git clone https://github.com/iieternal/greedyguy.git
    cd greedyguy
    ```
 
