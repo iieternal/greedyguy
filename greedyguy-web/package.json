@@ -1,5 +1,5 @@
 {
-  "name": "greedyguy-web",
+  "name": "@iieternal/greedyguy-web",
   "version": "1.0.0",
   "description": "GreedyGuy compression for websites — drop-in script tag or ES module. Context-mixing + arithmetic coding in 29KB of WASM.",
   "type": "module",
@@ -30,10 +30,20 @@
     "serve": "npx serve -p 8080 ."
   },
   "keywords": [
-    "compression", "wasm", "webassembly", "greedyguy",
-    "browser", "script-tag", "cdn", "vanilla-js",
-    "decompression", "context-mixing", "arithmetic-coding",
-    "lossless", "web", "no-framework"
+    "compression",
+    "wasm",
+    "webassembly",
+    "greedyguy",
+    "browser",
+    "script-tag",
+    "cdn",
+    "vanilla-js",
+    "decompression",
+    "context-mixing",
+    "arithmetic-coding",
+    "lossless",
+    "web",
+    "no-framework"
   ],
   "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
   "license": "MIT",

@@ -1,5 +1,5 @@
 {
-  "name": "gg-cache",
+  "name": "@iieternal/gg-cache",
   "version": "1.0.0",
   "description": "Compressed cache manager powered by GreedyGuy WASM — LRU+TTL cache with transparent compression for Express, Fastify, Electron, and browser apps",
   "type": "module",
@@ -32,9 +32,20 @@
     "test": "node test/cache.test.js && node test/fastify.test.js"
   },
   "keywords": [
-    "cache", "compression", "lru", "ttl", "wasm", "greedyguy",
-    "electron", "express", "fastify", "middleware", "service-worker",
-    "fetch", "compressed-cache", "lossless"
+    "cache",
+    "compression",
+    "lru",
+    "ttl",
+    "wasm",
+    "greedyguy",
+    "electron",
+    "express",
+    "fastify",
+    "middleware",
+    "service-worker",
+    "fetch",
+    "compressed-cache",
+    "lossless"
   ],
   "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
   "license": "MIT",

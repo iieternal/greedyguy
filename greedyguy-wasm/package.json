@@ -1,5 +1,5 @@
 {
-  "name": "greedyguy-wasm",
+  "name": "@iieternal/greedyguy-wasm",
   "version": "1.0.0",
   "description": "GreedyGuy compression/decompression in the browser via WebAssembly. Context-mixing + arithmetic coding, ~29KB WASM.",
   "type": "module",

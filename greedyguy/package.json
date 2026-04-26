@@ -1,5 +1,5 @@
 {
-  "name": "greedyguy",
+  "name": "@iieternal/greedyguy",
   "version": "1.0.0",
   "description": "Byte-prediction compressor using context mixing + arithmetic coding. Beats xz-9 on web content.",
   "main": "lib/index.js",
