@@ -1,0 +1,65 @@
+{
+  "name": "greedyguy",
+  "version": "1.0.0",
+  "description": "Byte-prediction compressor using context mixing + arithmetic coding. Beats xz-9 on web content.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "type": "commonjs",
+  "bin": {
+    "greedyguy": "greedyguy"
+  },
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "types": "./lib/index.d.ts"
+    },
+    "./wasm": "./wasm/dist/greedyguy.js"
+  },
+  "files": [
+    "lib/",
+    "include/",
+    "src/gg_lib.c",
+    "greedyguy.c",
+    "Makefile",
+    "wasm/dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "install": "make CC=gcc CFLAGS='-O3 -flto -Wall' all 2>/dev/null || echo 'Native build skipped (no C compiler)'",
+    "test": "node lib/test.js",
+    "bench": "node lib/bench.js"
+  },
+  "keywords": [
+    "compression",
+    "compressor",
+    "context-mixing",
+    "arithmetic-coding",
+    "byte-prediction",
+    "lossless",
+    "html",
+    "web",
+    "wasm"
+  ],
+  "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niceguydave/greedyguy"
+  },
+  "homepage": "https://github.com/niceguydave/greedyguy#readme",
+  "bugs": {
+    "url": "https://github.com/niceguydave/greedyguy/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "linux",
+    "darwin"
+  ],
+  "cpu": [
+    "x64",
+    "arm64"
+  ]
+}

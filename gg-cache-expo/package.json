@@ -1,0 +1,59 @@
+{
+  "name": "gg-cache-expo",
+  "version": "1.0.0",
+  "description": "GreedyGuy decompression for Expo/React Native — transparent GGW1 response decompression on Android, iOS, and Web",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./provider": "./src/GGProvider.js",
+    "./fetch": "./src/ggFetch.js",
+    "./hooks": "./src/hooks.js",
+    "./interceptor": "./src/interceptor.js",
+    "./request": "./src/requestCompressor.js",
+    "./decompressor": "./src/decompressor.js"
+  },
+  "files": [
+    "src/",
+    "types/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/request.test.js"
+  },
+  "keywords": [
+    "expo", "react-native", "compression", "decompression",
+    "greedyguy", "wasm", "webassembly", "cache", "fetch",
+    "android", "ios", "web", "react", "hooks"
+  ],
+  "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niceguydave/gg-cache-expo"
+  },
+  "homepage": "https://github.com/niceguydave/gg-cache-expo#readme",
+  "bugs": {
+    "url": "https://github.com/niceguydave/gg-cache-expo/issues"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-native": ">=0.72.0",
+    "expo": ">=49.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react-native": { "optional": true },
+    "expo": { "optional": true }
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

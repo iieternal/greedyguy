@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreedyGuy Test Page — Comprehensive HTML Document</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; padding: 20px; background: #f5f5f5; }
+    .container { max-width: 1200px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 8px 8px 0 0; margin: -30px -30px 30px -30px; }
+    .nav { display: flex; gap: 20px; padding: 15px 0; border-bottom: 2px solid #eee; margin-bottom: 20px; }
+    .nav a { text-decoration: none; color: #667eea; font-weight: bold; padding: 8px 16px; border-radius: 4px; transition: background 0.3s; }
+    .nav a:hover { background: #f0f0ff; }
+    .card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; transition: box-shadow 0.3s; }
+    .card:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .card-title { font-size: 1.25rem; font-weight: bold; color: #333; margin-bottom: 10px; }
+    .btn { display: inline-block; padding: 10px 20px; border-radius: 4px; font-weight: bold; text-decoration: none; cursor: pointer; border: none; }
+    .btn-primary { background: #667eea; color: white; }
+    .btn-secondary { background: #6c757d; color: white; }
+    .btn-success { background: #28a745; color: white; }
+    .btn-danger { background: #dc3545; color: white; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #667eea; color: white; font-weight: bold; }
+    tr:nth-child(even) { background: #f8f9fa; }
+    tr:hover { background: #e9ecef; }
+    .form-group { margin-bottom: 15px; }
+    .form-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555; }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; font-size: 1rem; }
+    .footer { text-align: center; padding: 20px; color: #999; border-top: 1px solid #eee; margin-top: 30px; }
+    .sidebar { float: right; width: 300px; padding: 20px; background: #f8f9fa; border-radius: 8px; margin-left: 20px; }
+    .tag { display: inline-block; padding: 4px 8px; background: #e9ecef; border-radius: 12px; font-size: 0.85rem; margin: 2px; }
+    @media (max-width: 768px) { .sidebar { float: none; width: 100%; margin-left: 0; margin-bottom: 20px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Main Header Section -->
+    <div class="header">
+      <h1>GreedyGuy Compression Test Document</h1>
+      <p>A comprehensive HTML page designed to test context-mixing compression algorithms</p>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+      <a href="#Home" data-section="Home" title="Go to Home section">Home</a>
+      <a href="#About" data-section="About" title="Go to About section">About</a>
+      <a href="#Products" data-section="Products" title="Go to Products section">Products</a>
+      <a href="#Services" data-section="Services" title="Go to Services section">Services</a>
+      <a href="#Portfolio" data-section="Portfolio" title="Go to Portfolio section">Portfolio</a>
+      <a href="#Blog" data-section="Blog" title="Go to Blog section">Blog</a>
+      <a href="#Contact" data-section="Contact" title="Go to Contact section">Contact</a>
+      <a href="#Support" data-section="Support" title="Go to Support section">Support</a>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar" data-widget="sidebar" role="complementary">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="/page/1" title="Navigate to page 1">Pariatur aute minim</a></li>
+        <li><a href="/page/2" title="Navigate to page 2">Dolor reprehenderit nulla culpa</a></li>
+        <li><a href="/page/3" title="Navigate to page 3">Aliquip sint id</a></li>
+        <li><a href="/page/4" title="Navigate to page 4">Tempor reprehenderit sit</a></li>
+        <li><a href="/page/5" title="Navigate to page 5">Commodo lorem magna elit sint</a></li>
+        <li><a href="/page/6" title="Navigate to page 6">Pariatur magna commodo laboris cupidatat</a></li>
+        <li><a href="/page/7" title="Navigate to page 7">Quis sed deserunt est</a></li>
+        <li><a href="/page/8" title="Navigate to page 8">Excepteur ex consectetur</a></li>
+        <li><a href="/page/9" title="Navigate to page 9">Officia cupidatat sunt magna</a></li>
+        <li><a href="/page/10" title="Navigate to page 10">Voluptate exercitation aliquip anim anim</a></li>
+        <li><a href="/page/11" title="Navigate to page 11">Tempor adipiscing ut esse ullamco</a></li>
+        <li><a href="/page/12" title="Navigate to page 12">Anim sunt ex nulla excepteur</a></li>
+      </ul>
+      <h3>Tags</h3>
+      <div class="tags-container">
+        <span class="tag" data-tag-id="0">list</span>
+        <span class="tag" data-tag-id="1">hidden</span>
+        <span class="tag" data-tag-id="2">hidden</span>
+        <span class="tag" data-tag-id="3">article</span>
+        <span class="tag" data-tag-id="4">main</span>
+        <span class="tag" data-tag-id="5">icon</span>
+        <span class="tag" data-tag-id="6">card</span>
+        <span class="tag" data-tag-id="7">info</span>
+        <span class="tag" data-tag-id="8">card</span>
+        <span class="tag" data-tag-id="9">btn</span>
+        <span class="tag" data-tag-id="10">nav</span>
+        <span class="tag" data-tag-id="11">footer</span>
+        <span class="tag" data-tag-id="12">section</span>
+        <span class="tag" data-tag-id="13">text</span>
+        <span class="tag" data-tag-id="14">danger</span>
+        <span class="tag" data-tag-id="15">panel</span>
+        <span class="tag" data-tag-id="16">title</span>
+        <span class="tag" data-tag-id="17">hidden</span>
+        <span class="tag" data-tag-id="18">row</span>
+        <span class="tag" data-tag-id="19">text</span>
+      </div>
+    </aside>
+
+    <!-- Content Cards Section -->
+    <section id="content" class="content-section" data-section="main">
+      <h2>Featured Content</h2>
+
+      <div class="card" id="card-0" data-card-index="0" data-category="wrapper">
+        <div class="card-title">Ad labore sit nisi veniam</div>
+        <p>Labore aliquip sit cillum quis non minim pariatur ut cillum sint aliquip est officia aliquip sint eiusmod reprehenderit nulla labore ea quis in sed magna</p>
+        <ul class="card-list">
+          <li data-item="0">Cillum fugiat commodo sint do ullamco exercitation cillum exercitation est sint dolor</li>
+          <li data-item="1">Esse eiusmod labore anim enim ad adipiscing nulla pariatur deserunt lorem</li>
+          <li data-item="2">Do dolore ipsum sed deserunt pariatur laboris</li>
+          <li data-item="3">Incididunt aliqua exercitation occaecat ad</li>
+          <li data-item="4">In culpa sed pariatur irure minim duis ex sed</li>
+          <li data-item="5">Adipiscing tempor quis excepteur aliqua commodo aute officia culpa pariatur elit</li>
+        </ul>
+        <div class="card-actions">
+          <a href="/details/0" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/0" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-1" data-card-index="1" data-category="danger">
+        <div class="card-title">Non dolor officia qui cupidatat</div>
+        <p>Officia mollit voluptate ea ipsum sint officia aliquip ipsum enim nisi exercitation adipiscing elit mollit pariatur nostrud ad commodo sunt labore quis velit culpa incididunt anim occaecat anim lorem nulla elit dolor veniam sit occaecat nulla ea</p>
+      </div>
+
+      <div class="card" id="card-2" data-card-index="2" data-category="container">
+        <div class="card-title">Ut pariatur ipsum sint sed enim ipsum</div>
+        <p>Consectetur do laboris ea adipiscing sed qui ipsum culpa incididunt proident veniam aliquip labore laboris tempor nostrud anim pariatur adipiscing ullamco esse incididunt veniam deserunt quis deserunt cupidatat excepteur non adipiscing voluptate qui id commodo consequat ut exercitation enim exercitation in aliqua nostrud ut aute lorem dolor</p>
+        <div class="card-actions">
+          <a href="/details/2" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/2" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-3" data-card-index="3" data-category="primary">
+        <div class="card-title">Reprehenderit do ex esse laboris quis</div>
+        <p>Elit amet consectetur officia occaecat est dolore consectetur ad esse aute amet dolore consectetur enim tempor reprehenderit dolore id do proident eiusmod sit et tempor qui aliquip aliqua est aute sint incididunt do sunt elit sint</p>
+        <ul class="card-list">
+          <li data-item="0">Occaecat laboris quis consequat sed esse ipsum</li>
+          <li data-item="1">Voluptate aute quis adipiscing aute amet adipiscing anim nostrud</li>
+          <li data-item="2">Proident occaecat irure do in adipiscing tempor proident ex esse quis</li>
+          <li data-item="3">Sit dolore veniam voluptate ex veniam</li>
+          <li data-item="4">Ea velit pariatur officia voluptate officia sint sunt ut</li>
+          <li data-item="5">Sed ut dolor sit esse labore in tempor</li>
+        </ul>
+      </div>
+
+      <div class="card" id="card-4" data-card-index="4" data-category="link">
+        <div class="card-title">Et sed proident pariatur</div>
+        <p>Laboris esse mollit lorem irure in officia sint ad non do ipsum voluptate in amet fugiat dolore duis quis esse est est ullamco magna veniam ut</p>
+        <div class="card-actions">
+          <a href="/details/4" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/4" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-5" data-card-index="5" data-category="active">
+        <div class="card-title">Exercitation culpa culpa duis sit officia laboris</div>
+        <p>Esse sint minim ea exercitation tempor deserunt eiusmod fugiat est cupidatat veniam pariatur irure cupidatat labore nostrud est lorem reprehenderit quis cupidatat tempor velit commodo anim voluptate aute quis quis officia exercitation sed do ex dolor amet ut aute voluptate minim non</p>
+      </div>
+
+      <div class="card" id="card-6" data-card-index="6" data-category="danger">
+        <div class="card-title">Ea nostrud in culpa ad est</div>
+        <p>Duis proident ea dolore magna laboris commodo excepteur occaecat consequat commodo esse veniam deserunt ex pariatur eiusmod qui dolor qui amet duis laboris elit reprehenderit officia adipiscing cupidatat magna</p>
+        <ul class="card-list">
+          <li data-item="0">Id qui sed nostrud aliqua consectetur elit aliqua aute aliquip duis</li>
+          <li data-item="1">Sit ullamco cillum voluptate aliqua consequat sit</li>
+          <li data-item="2">Et incididunt pariatur eiusmod adipiscing minim sunt mollit magna et in adipiscing</li>
+          <li data-item="3">Nulla aliquip mollit laboris magna duis ad cillum consectetur labore sit lorem</li>
+          <li data-item="4">Irure excepteur proident occaecat aliqua in</li>
+          <li data-item="5">Esse ad ullamco sed dolor nostrud duis elit ea ullamco tempor</li>
+          <li data-item="6">Ipsum et laboris et adipiscing anim adipiscing elit</li>
+          <li data-item="7">Ad dolore et ex nulla quis deserunt sunt ad irure dolor</li>
+        </ul>
+        <div class="card-actions">
+          <a href="/details/6" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/6" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-7" data-card-index="7" data-category="warning">
+        <div class="card-title">Exercitation ex officia reprehenderit sed reprehenderit</div>
+        <p>Ea et sunt tempor enim et voluptate veniam consectetur aliquip et est ut aute in ut ipsum aute labore aliquip sunt aute minim ex in exercitation esse commodo deserunt sed ipsum ut cillum occaecat sed ad duis</p>
+      </div>
+
+      <div class="card" id="card-8" data-card-index="8" data-category="input">
+        <div class="card-title">Veniam nulla id enim sit</div>
+        <p>Mollit dolore in sed do pariatur reprehenderit esse velit ea ad aliquip id tempor pariatur dolor duis ad sit voluptate quis nisi labore consequat esse sint adipiscing aliqua sit est magna labore officia ullamco deserunt laboris lorem esse cupidatat velit sint</p>
+        <div class="card-actions">
+          <a href="/details/8" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/8" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-9" data-card-index="9" data-category="panel">
+        <div class="card-title">Veniam excepteur pariatur qui voluptate</div>
+        <p>Nostrud non quis duis adipiscing pariatur officia aliqua id dolor nisi occaecat sunt et reprehenderit incididunt proident dolor commodo laboris ex deserunt et ex laboris fugiat ipsum sit laboris labore in mollit non</p>
+        <ul class="card-list">
+          <li data-item="0">Cupidatat consectetur est elit amet amet ex labore</li>
+          <li data-item="1">Sit est enim elit fugiat cillum veniam quis nisi ea sit consectetur</li>
+          <li data-item="2">Ut dolor dolore qui cillum aliquip fugiat enim incididunt</li>
+          <li data-item="3">Exercitation et labore consectetur culpa excepteur sit labore velit ea</li>
+          <li data-item="4">Excepteur sint elit velit aliquip excepteur minim ea aliquip aliquip laboris eiusmod</li>
+          <li data-item="5">Aliqua ut reprehenderit sint ea tempor et cillum deserunt sit</li>
+        </ul>
+      </div>
+
+      <div class="card" id="card-10" data-card-index="10" data-category="header">
+        <div class="card-title">Id deserunt lorem qui</div>
+        <p>Nisi elit consequat occaecat non consequat est exercitation nisi nostrud exercitation sint sed dolor proident officia exercitation ex deserunt sit ea duis commodo cillum irure</p>
+        <div class="card-actions">
+          <a href="/details/10" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/10" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-11" data-card-index="11" data-category="link">
+        <div class="card-title">Veniam nulla in cupidatat</div>
+        <p>Ut ad enim consequat voluptate amet non nostrud fugiat dolor pariatur consequat consequat irure officia lorem aute adipiscing ad sed aliquip reprehenderit minim dolor et dolor ea ea</p>
+      </div>
+
+      <div class="card" id="card-12" data-card-index="12" data-category="primary">
+        <div class="card-title">Aute voluptate dolor consequat laboris</div>
+        <p>Dolor tempor cupidatat irure velit amet veniam nisi occaecat amet proident et reprehenderit elit sed nostrud ex quis aute velit quis labore commodo cupidatat officia cupidatat ipsum labore excepteur ullamco ullamco dolor fugiat nisi irure</p>
+        <ul class="card-list">
+          <li data-item="0">Excepteur fugiat anim tempor do voluptate et cillum tempor</li>
+          <li data-item="1">Ut do minim deserunt sed duis</li>
+          <li data-item="2">In aute exercitation do id ex elit sed minim consectetur</li>
+          <li data-item="3">Minim voluptate nulla magna elit adipiscing</li>
+          <li data-item="4">Commodo quis occaecat id in</li>
+        </ul>
+        <div class="card-actions">
+          <a href="/details/12" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/12" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+      <div class="card" id="card-13" data-card-index="13" data-category="sidebar">
+        <div class="card-title">Ut est proident aliquip ex</div>
+        <p>Aute exercitation mollit magna incididunt cupidatat mollit veniam irure adipiscing sint nulla qui incididunt tempor aliquip culpa duis culpa sit commodo ut incididunt consequat adipiscing voluptate lorem consectetur nulla pariatur</p>
+      </div>
+
+      <div class="card" id="card-14" data-card-index="14" data-category="link">
+        <div class="card-title">Ut labore commodo ut tempor nulla</div>
+        <p>Duis elit officia nisi officia id elit incididunt do enim mollit officia in quis occaecat sed anim elit irure velit fugiat sunt do ullamco dolor nostrud deserunt aute dolor sint minim cillum tempor dolor irure esse nisi laboris officia ad consequat aute velit id consequat aliquip incididunt</p>
+        <div class="card-actions">
+          <a href="/details/14" class="btn btn-primary" data-action="view">View Details</a>
+          <a href="/edit/14" class="btn btn-secondary" data-action="edit">Edit</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Data Table Section -->
+    <section id="data-table" class="table-section" data-section="table">
+      <h2>Product Catalog</h2>
+      <table id="product-table" class="data-table" data-sortable="true">
+        <thead>
+          <tr>
+            <th data-sort="id">ID</th>
+            <th data-sort="name">Product Name</th>
+            <th data-sort="category">Category</th>
+            <th data-sort="price">Price</th>
+            <th data-sort="stock">In Stock</th>
+            <th data-sort="rating">Rating</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-row-id="0" class="even-row">
+            <td>1000</td>
+            <td>Fugiat voluptate ipsum</td>
+            <td>Books</td>
+            <td>$64.21</td>
+            <td>10</td>
+            <td>4.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="0">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="0">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="0">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="1" class="odd-row">
+            <td>1001</td>
+            <td>Velit exercitation ut</td>
+            <td>Toys</td>
+            <td>$246.06</td>
+            <td>887</td>
+            <td>4.8/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="1">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="1">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="1">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="2" class="even-row">
+            <td>1002</td>
+            <td>Reprehenderit anim</td>
+            <td>Books</td>
+            <td>$149.26</td>
+            <td>913</td>
+            <td>5.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="2">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="2">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="2">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="3" class="odd-row">
+            <td>1003</td>
+            <td>In laboris</td>
+            <td>Books</td>
+            <td>$154.31</td>
+            <td>21</td>
+            <td>5.3/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="3">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="3">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="3">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="4" class="even-row">
+            <td>1004</td>
+            <td>Mollit minim adipiscing quis</td>
+            <td>Food</td>
+            <td>$132.63</td>
+            <td>405</td>
+            <td>1.9/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="4">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="4">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="4">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="5" class="odd-row">
+            <td>1005</td>
+            <td>Incididunt officia sit labore</td>
+            <td>Health</td>
+            <td>$184.30</td>
+            <td>203</td>
+            <td>4.0/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="5">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="5">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="5">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="6" class="even-row">
+            <td>1006</td>
+            <td>Ipsum duis</td>
+            <td>Sports</td>
+            <td>$312.01</td>
+            <td>712</td>
+            <td>4.0/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="6">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="6">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="6">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="7" class="odd-row">
+            <td>1007</td>
+            <td>Anim excepteur culpa</td>
+            <td>Health</td>
+            <td>$36.63</td>
+            <td>136</td>
+            <td>5.1/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="7">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="7">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="7">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="8" class="even-row">
+            <td>1008</td>
+            <td>Ad aliquip</td>
+            <td>Books</td>
+            <td>$261.72</td>
+            <td>934</td>
+            <td>4.4/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="8">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="8">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="8">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="9" class="odd-row">
+            <td>1009</td>
+            <td>Enim excepteur voluptate occaecat</td>
+            <td>Sports</td>
+            <td>$284.02</td>
+            <td>374</td>
+            <td>1.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="9">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="9">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="9">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="10" class="even-row">
+            <td>1010</td>
+            <td>Nostrud esse duis</td>
+            <td>Clothing</td>
+            <td>$224.49</td>
+            <td>371</td>
+            <td>5.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="10">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="10">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="10">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="11" class="odd-row">
+            <td>1011</td>
+            <td>Proident tempor</td>
+            <td>Electronics</td>
+            <td>$343.26</td>
+            <td>778</td>
+            <td>3.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="11">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="11">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="11">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="12" class="even-row">
+            <td>1012</td>
+            <td>Veniam aliquip labore</td>
+            <td>Sports</td>
+            <td>$25.96</td>
+            <td>201</td>
+            <td>3.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="12">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="12">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="12">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="13" class="odd-row">
+            <td>1013</td>
+            <td>Id ut in</td>
+            <td>Food</td>
+            <td>$95.17</td>
+            <td>754</td>
+            <td>5.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="13">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="13">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="13">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="14" class="even-row">
+            <td>1014</td>
+            <td>Aute magna</td>
+            <td>Books</td>
+            <td>$112.57</td>
+            <td>625</td>
+            <td>4.0/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="14">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="14">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="14">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="15" class="odd-row">
+            <td>1015</td>
+            <td>Quis qui reprehenderit</td>
+            <td>Health</td>
+            <td>$59.03</td>
+            <td>176</td>
+            <td>1.4/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="15">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="15">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="15">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="16" class="even-row">
+            <td>1016</td>
+            <td>Deserunt qui ex consequat</td>
+            <td>Books</td>
+            <td>$299.84</td>
+            <td>303</td>
+            <td>3.1/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="16">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="16">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="16">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="17" class="odd-row">
+            <td>1017</td>
+            <td>Ullamco dolor</td>
+            <td>Books</td>
+            <td>$37.09</td>
+            <td>471</td>
+            <td>3.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="17">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="17">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="17">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="18" class="even-row">
+            <td>1018</td>
+            <td>Aute esse</td>
+            <td>Electronics</td>
+            <td>$481.04</td>
+            <td>762</td>
+            <td>3.0/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="18">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="18">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="18">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="19" class="odd-row">
+            <td>1019</td>
+            <td>Deserunt aute enim sed</td>
+            <td>Sports</td>
+            <td>$270.44</td>
+            <td>56</td>
+            <td>3.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="19">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="19">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="19">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="20" class="even-row">
+            <td>1020</td>
+            <td>Commodo qui</td>
+            <td>Electronics</td>
+            <td>$386.58</td>
+            <td>200</td>
+            <td>4.2/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="20">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="20">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="20">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="21" class="odd-row">
+            <td>1021</td>
+            <td>Dolor reprehenderit fugiat</td>
+            <td>Home</td>
+            <td>$156.82</td>
+            <td>939</td>
+            <td>2.0/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="21">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="21">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="21">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="22" class="even-row">
+            <td>1022</td>
+            <td>Nostrud ad ullamco</td>
+            <td>Sports</td>
+            <td>$146.12</td>
+            <td>109</td>
+            <td>1.0/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="22">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="22">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="22">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="23" class="odd-row">
+            <td>1023</td>
+            <td>Ipsum voluptate enim</td>
+            <td>Food</td>
+            <td>$410.05</td>
+            <td>422</td>
+            <td>2.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="23">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="23">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="23">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="24" class="even-row">
+            <td>1024</td>
+            <td>Sint consequat</td>
+            <td>Books</td>
+            <td>$167.61</td>
+            <td>419</td>
+            <td>3.2/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="24">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="24">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="24">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="25" class="odd-row">
+            <td>1025</td>
+            <td>Ex consequat sit officia</td>
+            <td>Electronics</td>
+            <td>$307.29</td>
+            <td>606</td>
+            <td>3.1/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="25">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="25">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="25">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="26" class="even-row">
+            <td>1026</td>
+            <td>Tempor qui</td>
+            <td>Food</td>
+            <td>$475.85</td>
+            <td>368</td>
+            <td>2.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="26">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="26">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="26">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="27" class="odd-row">
+            <td>1027</td>
+            <td>Deserunt occaecat ipsum</td>
+            <td>Clothing</td>
+            <td>$78.20</td>
+            <td>629</td>
+            <td>3.6/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="27">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="27">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="27">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="28" class="even-row">
+            <td>1028</td>
+            <td>Reprehenderit duis ipsum velit</td>
+            <td>Home</td>
+            <td>$140.30</td>
+            <td>729</td>
+            <td>5.3/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="28">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="28">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="28">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="29" class="odd-row">
+            <td>1029</td>
+            <td>Et reprehenderit voluptate</td>
+            <td>Electronics</td>
+            <td>$41.19</td>
+            <td>387</td>
+            <td>4.3/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="29">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="29">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="29">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="30" class="even-row">
+            <td>1030</td>
+            <td>Est pariatur amet</td>
+            <td>Health</td>
+            <td>$498.11</td>
+            <td>333</td>
+            <td>4.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="30">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="30">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="30">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="31" class="odd-row">
+            <td>1031</td>
+            <td>Enim do dolore</td>
+            <td>Food</td>
+            <td>$198.81</td>
+            <td>532</td>
+            <td>4.1/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="31">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="31">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="31">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="32" class="even-row">
+            <td>1032</td>
+            <td>Aliquip veniam</td>
+            <td>Health</td>
+            <td>$107.42</td>
+            <td>951</td>
+            <td>1.2/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="32">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="32">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="32">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="33" class="odd-row">
+            <td>1033</td>
+            <td>Aute eiusmod</td>
+            <td>Books</td>
+            <td>$275.32</td>
+            <td>662</td>
+            <td>2.5/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="33">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="33">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="33">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="34" class="even-row">
+            <td>1034</td>
+            <td>Eiusmod cupidatat nulla mollit</td>
+            <td>Food</td>
+            <td>$224.92</td>
+            <td>671</td>
+            <td>3.8/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="34">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="34">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="34">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="35" class="odd-row">
+            <td>1035</td>
+            <td>Dolore non ut</td>
+            <td>Electronics</td>
+            <td>$396.62</td>
+            <td>434</td>
+            <td>3.8/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="35">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="35">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="35">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="36" class="even-row">
+            <td>1036</td>
+            <td>Laboris excepteur</td>
+            <td>Food</td>
+            <td>$96.88</td>
+            <td>529</td>
+            <td>3.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="36">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="36">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="36">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="37" class="odd-row">
+            <td>1037</td>
+            <td>Incididunt cupidatat esse exercitation</td>
+            <td>Health</td>
+            <td>$115.37</td>
+            <td>73</td>
+            <td>4.7/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="37">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="37">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="37">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="38" class="even-row">
+            <td>1038</td>
+            <td>Anim adipiscing</td>
+            <td>Home</td>
+            <td>$51.84</td>
+            <td>838</td>
+            <td>4.2/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="38">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="38">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="38">Delete</button>
+            </td>
+          </tr>
+          <tr data-row-id="39" class="odd-row">
+            <td>1039</td>
+            <td>Tempor et</td>
+            <td>Clothing</td>
+            <td>$169.74</td>
+            <td>966</td>
+            <td>4.1/5</td>
+            <td>
+              <button class="btn btn-primary btn-sm" data-action="view" data-id="39">View</button>
+              <button class="btn btn-success btn-sm" data-action="buy" data-id="39">Buy</button>
+              <button class="btn btn-danger btn-sm" data-action="delete" data-id="39">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Ordered Lists -->
+    <section id="lists" class="list-section">
+      <h2>Documentation Sections</h2>
+      <div class="list-group" id="list-group-0">
+        <h3>Section 1: Exercitation lorem et exercitation</h3>
+        <ol class="doc-list" start="1">
+          <li class="doc-item" data-importance="high">
+            <strong>Qui ut:</strong> Pariatur ad id aliquip laboris non quis elit velit aliqua cillum minim mollit dolore irure sunt pariatur exercitation est
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Labore incididunt:</strong> Anim incididunt sed in commodo enim aliquip labore cillum sit laboris
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Commodo excepteur:</strong> Consequat officia et sint pariatur aliquip nostrud veniam exercitation ut enim sint deserunt consequat veniam fugiat commodo veniam ex
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Dolor mollit ex:</strong> Ex cupidatat sunt magna et commodo consequat et ex dolore dolore elit cupidatat minim
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Sunt ex:</strong> Ex reprehenderit ad ea eiusmod voluptate culpa enim fugiat sit et amet
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Deserunt irure:</strong> Occaecat minim exercitation cupidatat voluptate elit veniam duis anim quis qui incididunt
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Commodo sint officia:</strong> Exercitation aliquip magna occaecat aliqua aute aliqua irure do sint
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Magna exercitation id:</strong> Cupidatat ex consequat proident officia nulla tempor cupidatat ad laboris sint ea occaecat sed sint qui officia nisi in voluptate laboris
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Cupidatat amet:</strong> Incididunt aute non laboris voluptate proident dolor ex incididunt commodo in ullamco cupidatat proident occaecat ut sunt aute ullamco est consequat non anim culpa
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Sunt cupidatat:</strong> Tempor ex proident exercitation aliqua ullamco mollit culpa in aute labore nostrud id veniam in culpa elit anim culpa duis qui dolor
+          </li>
+        </ol>
+      </div>
+      <div class="list-group" id="list-group-1">
+        <h3>Section 2: Tempor non nostrud nulla duis</h3>
+        <ol class="doc-list" start="11">
+          <li class="doc-item" data-importance="high">
+            <strong>Reprehenderit nostrud:</strong> Amet dolor ex velit consequat nisi tempor commodo lorem exercitation adipiscing nulla amet excepteur et dolore aute elit
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Reprehenderit sit:</strong> Mollit qui consequat quis sunt enim irure mollit exercitation elit ipsum elit anim elit excepteur et
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Reprehenderit officia duis:</strong> Deserunt adipiscing exercitation velit duis velit aute pariatur est elit quis voluptate sint ipsum nostrud sit cillum et excepteur
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Quis culpa culpa:</strong> Veniam lorem et pariatur dolore dolore anim incididunt proident enim nostrud minim ullamco sunt
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Qui lorem:</strong> Officia voluptate deserunt cillum aliqua culpa consequat anim irure pariatur ea aliqua cillum anim eiusmod proident incididunt
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Cillum non:</strong> Sunt aute id amet aute ullamco occaecat eiusmod ex enim aute est consectetur adipiscing adipiscing sint mollit sed excepteur mollit laboris est aute elit
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Esse reprehenderit in:</strong> Cillum duis ad ex ex ad proident deserunt aliqua tempor veniam sed fugiat sed
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Sint culpa ea:</strong> Deserunt fugiat sint eiusmod sed quis excepteur ullamco sunt reprehenderit ut sed voluptate excepteur pariatur dolor occaecat excepteur nulla reprehenderit sed
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Duis commodo:</strong> Veniam velit sint labore consectetur qui officia reprehenderit elit nulla anim tempor cillum aliqua
+          </li>
+        </ol>
+      </div>
+      <div class="list-group" id="list-group-2">
+        <h3>Section 3: Eiusmod consectetur lorem proident pariatur</h3>
+        <ol class="doc-list" start="21">
+          <li class="doc-item" data-importance="high">
+            <strong>Incididunt tempor cillum:</strong> Ullamco sunt quis et sint sint pariatur proident nisi in laboris officia aliquip exercitation nostrud sed aute veniam mollit
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Sunt deserunt:</strong> Veniam duis in irure minim commodo esse officia sed duis voluptate velit qui est lorem
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Pariatur nulla:</strong> Mollit consectetur proident sunt pariatur labore irure cillum in deserunt minim sed occaecat enim aute ea
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Velit tempor:</strong> Fugiat adipiscing ut exercitation ipsum do ea incididunt dolore consequat ex est consectetur elit ea cupidatat sit
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Pariatur sint:</strong> Minim veniam et culpa consequat enim ea sed reprehenderit laboris minim consectetur minim minim
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Occaecat duis:</strong> Reprehenderit veniam est amet veniam velit ea magna consectetur nulla aliquip velit
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Nisi ex sed:</strong> Sunt adipiscing cillum exercitation velit duis ex pariatur aliquip aliqua nulla ullamco irure mollit
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Proident laboris nostrud:</strong> Enim ea reprehenderit fugiat officia labore magna mollit qui ex et proident consectetur tempor anim eiusmod aliqua irure reprehenderit
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Pariatur magna quis:</strong> Irure enim elit voluptate sit ex consectetur culpa ut anim anim est quis enim dolor veniam dolor sed amet
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Proident ex laboris:</strong> Dolor ea aliqua laboris reprehenderit reprehenderit veniam amet tempor aute voluptate
+          </li>
+        </ol>
+      </div>
+      <div class="list-group" id="list-group-3">
+        <h3>Section 4: Occaecat quis non ea</h3>
+        <ol class="doc-list" start="31">
+          <li class="doc-item" data-importance="high">
+            <strong>Anim adipiscing:</strong> Pariatur incididunt nisi velit enim magna amet ut in dolor anim
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Excepteur tempor:</strong> Aliqua magna mollit consectetur non non in esse incididunt non sed magna sint sunt culpa anim minim veniam aliquip non
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Fugiat nostrud:</strong> Magna consectetur esse ex et exercitation consectetur sunt enim quis mollit eiusmod adipiscing aliqua nostrud labore velit irure ad consequat aute do sint
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Sed nostrud:</strong> Amet reprehenderit ex cillum ut eiusmod do id consectetur ea ad
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Incididunt cillum incididunt:</strong> Adipiscing est nostrud velit lorem officia nisi consectetur do anim qui qui proident duis excepteur ad est anim
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Nisi consectetur pariatur:</strong> Consectetur velit cupidatat deserunt qui et non officia magna duis enim consectetur aliqua reprehenderit nisi
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Veniam est:</strong> Nisi incididunt labore enim tempor velit reprehenderit ullamco nostrud exercitation officia non cupidatat elit nisi eiusmod dolore anim amet amet
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Reprehenderit ex:</strong> Deserunt velit voluptate officia occaecat officia sint adipiscing anim dolor culpa sed ea ad amet veniam cillum deserunt ex ut
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Minim in aute:</strong> Cillum reprehenderit commodo fugiat id officia culpa ex lorem enim do enim velit irure ex lorem aliquip fugiat reprehenderit minim non mollit
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Elit ex:</strong> Ea culpa dolor deserunt mollit aliqua ea minim esse nulla ipsum veniam occaecat nulla labore velit ipsum culpa
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Qui esse:</strong> Ea ex irure reprehenderit quis dolore ullamco do pariatur do dolor elit nulla
+          </li>
+        </ol>
+      </div>
+      <div class="list-group" id="list-group-4">
+        <h3>Section 5: Velit anim velit</h3>
+        <ol class="doc-list" start="41">
+          <li class="doc-item" data-importance="high">
+            <strong>Esse nulla:</strong> Qui incididunt sit irure minim labore exercitation elit adipiscing qui enim nulla elit excepteur irure
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Adipiscing aliqua sed:</strong> Cupidatat dolore mollit tempor aliquip esse sed magna elit esse nulla dolore cillum sint minim elit non sunt veniam aliqua ad non magna
+          </li>
+          <li class="doc-item" data-importance="high">
+            <strong>Ex occaecat:</strong> Deserunt occaecat voluptate deserunt incididunt exercitation fugiat labore aliquip nostrud enim laboris occaecat fugiat
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Reprehenderit laboris:</strong> Qui lorem sunt nulla minim eiusmod aliquip laboris ipsum laboris fugiat
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Nulla velit:</strong> Mollit esse veniam tempor labore nulla nostrud laboris esse ullamco fugiat dolor fugiat qui est
+          </li>
+          <li class="doc-item" data-importance="medium">
+            <strong>Consectetur amet sint:</strong> Excepteur tempor enim labore ipsum voluptate reprehenderit nostrud amet ipsum labore est ex culpa officia
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Labore cillum adipiscing:</strong> Ea exercitation labore dolor ut amet labore irure lorem ipsum minim
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Elit lorem:</strong> Anim veniam aute dolor exercitation mollit mollit fugiat commodo excepteur culpa sint tempor magna do minim
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Commodo lorem:</strong> Velit veniam enim sit esse dolor occaecat do pariatur irure cupidatat sint tempor in
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Reprehenderit occaecat lorem:</strong> Adipiscing nisi cupidatat consequat dolor magna consequat qui consectetur dolore minim irure tempor commodo occaecat magna aliqua deserunt dolor excepteur et enim pariatur
+          </li>
+          <li class="doc-item" data-importance="low">
+            <strong>Dolor ad:</strong> Occaecat veniam tempor reprehenderit non aliqua ut id ipsum qui nulla do adipiscing cupidatat irure cupidatat culpa velit exercitation sint deserunt adipiscing labore
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section id="contact" class="form-section" data-section="contact">
+      <h2>Contact Us</h2>
+      <form id="contact-form" method="post" action="/api/contact" data-validate="true" novalidate>
+        <div class="form-group" data-field="first_name">
+          <label for="first_name">First Name</label>
+          <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required aria-required="true" autocomplete="first_name">
+        </div>
+        <div class="form-group" data-field="last_name">
+          <label for="last_name">Last Name</label>
+          <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required aria-required="true" autocomplete="last_name">
+        </div>
+        <div class="form-group" data-field="email">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="your.email@example.com" required aria-required="true" autocomplete="email">
+        </div>
+        <div class="form-group" data-field="phone">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required aria-required="true" autocomplete="phone">
+        </div>
+        <div class="form-group" data-field="company">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Your company name" required aria-required="true" autocomplete="company">
+        </div>
+        <div class="form-group" data-field="website">
+          <label for="website">Website</label>
+          <input type="url" id="website" name="website" placeholder="https://example.com" required aria-required="true" autocomplete="website">
+        </div>
+        <div class="form-group" data-field="subject">
+          <label for="subject">Subject</label>
+          <select id="subject" name="subject" required>
+            <option value="">Select a subject...</option>
+            <option value="general">General Inquiry</option>
+            <option value="support">Technical Support</option>
+            <option value="billing">Billing Question</option>
+            <option value="feedback">Feedback</option>
+            <option value="partnership">Partnership Opportunity</option>
+          </select>
+        </div>
+        <div class="form-group" data-field="message">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="6" placeholder="Type your message here..." required aria-required="true"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <button type="reset" class="btn btn-secondary">Clear Form</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Article Content -->
+    <section id="articles" class="article-section">
+      <h2>Latest Articles</h2>
+      <article class="article" id="article-0" data-author="author-0" data-date="2024-01-01">
+        <h3 class="article-title">Minim enim anim fugiat excepteur anim sunt consectetur sed</h3>
+        <div class="article-meta">
+          <span class="author">By Author 0</span>
+          <span class="date">2024-01-01</span>
+          <span class="category">Sports</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Elit magna laboris et amet qui pariatur adipiscing mollit tempor elit aute anim veniam ad aliqua sint proident dolore in adipiscing excepteur culpa voluptate amet officia nisi proident sit nulla aute eiusmod qui nostrud consequat reprehenderit ipsum sunt excepteur nisi ex amet aute ea</p>
+        <p class="article-paragraph" data-paragraph="1">Sint aliqua nulla nisi ex esse ex non culpa in nostrud veniam minim dolore commodo sit cillum nulla ex laboris est tempor elit sint occaecat aute labore voluptate tempor nulla sed consectetur irure ea et occaecat aute consectetur esse ipsum fugiat in sed nulla exercitation est lorem anim sit duis sit amet dolor nisi</p>
+        <p class="article-paragraph" data-paragraph="2">Lorem voluptate aliquip id nulla elit veniam enim eiusmod voluptate adipiscing officia ex labore esse qui duis excepteur ex nostrud adipiscing labore qui consectetur in aliqua consequat deserunt id nulla aliquip do ad duis sint non minim duis laboris duis nulla nisi officia labore irure in ad sed deserunt cillum nulla sit culpa cupidatat officia culpa</p>
+        <p class="article-paragraph" data-paragraph="3">Irure deserunt in commodo adipiscing aliquip ex officia pariatur sit aute ea minim adipiscing commodo consequat ea adipiscing consequat amet laboris sint enim excepteur lorem commodo dolore cupidatat excepteur sunt sint commodo ad id adipiscing pariatur proident excepteur commodo consequat quis commodo ipsum sed sunt</p>
+        <!-- Inline image placeholder -->
+        <figure class="article-image">
+          <img src="/images/article-0.jpg" alt="Do ex culpa ut" width="800" height="400" loading="lazy">
+          <figcaption>Commodo lorem deserunt elit et ea sit amet culpa anim</figcaption>
+        </figure>
+        <div class="article-tags">
+          <a href="/tags/panel" class="tag">sidebar</a>
+          <a href="/tags/item" class="tag">section</a>
+          <a href="/tags/item" class="tag">icon</a>
+          <a href="/tags/link" class="tag">form</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-1" data-author="author-1" data-date="2024-02-02">
+        <h3 class="article-title">Officia ut culpa sint sit est ex incididunt</h3>
+        <div class="article-meta">
+          <span class="author">By Author 1</span>
+          <span class="date">2024-02-02</span>
+          <span class="category">Clothing</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Sint enim fugiat mollit duis amet qui voluptate occaecat dolore anim proident ipsum enim exercitation quis proident sit ea aliquip veniam lorem consequat consectetur commodo velit nulla et officia mollit duis anim dolor cupidatat do voluptate ullamco magna est sunt ipsum</p>
+        <p class="article-paragraph" data-paragraph="1">Adipiscing irure est mollit esse esse et ipsum elit incididunt consectetur labore ea magna nulla in nisi culpa do officia dolore dolor quis nostrud et ad dolor in non in lorem enim mollit sint deserunt cillum do reprehenderit pariatur do ad tempor ipsum enim ex dolore deserunt occaecat sit ullamco incididunt consequat consectetur laboris fugiat mollit ea</p>
+        <p class="article-paragraph" data-paragraph="2">Culpa consequat minim qui in fugiat deserunt excepteur culpa consectetur nostrud sint pariatur labore id nisi commodo mollit commodo reprehenderit aute occaecat in in exercitation cillum elit voluptate proident fugiat ex irure labore fugiat laboris excepteur commodo excepteur cupidatat dolor nulla et tempor aliqua pariatur anim cupidatat aliqua veniam sint dolor minim laboris nisi dolore in</p>
+        <p class="article-paragraph" data-paragraph="3">Deserunt ea officia incididunt et proident in adipiscing consectetur consectetur in culpa minim labore sint duis dolor amet sint ullamco fugiat proident fugiat veniam nulla minim est aliquip est consectetur veniam irure anim consequat est nulla quis duis deserunt non enim voluptate velit ex lorem mollit tempor</p>
+        <p class="article-paragraph" data-paragraph="4">Dolor adipiscing ut velit eiusmod velit cillum consectetur consectetur ipsum ut fugiat ex proident in in nulla eiusmod labore commodo aliquip labore mollit culpa consectetur sint lorem in cupidatat non sed occaecat do sunt dolore consequat in deserunt pariatur id qui labore ad quis quis exercitation sunt tempor magna voluptate</p>
+        <div class="article-tags">
+          <a href="/tags/label" class="tag">item</a>
+          <a href="/tags/list" class="tag">footer</a>
+          <a href="/tags/article" class="tag">active</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-2" data-author="author-2" data-date="2024-03-03">
+        <h3 class="article-title">Tempor adipiscing ipsum sit id</h3>
+        <div class="article-meta">
+          <span class="author">By Author 2</span>
+          <span class="date">2024-03-03</span>
+          <span class="category">Electronics</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Qui exercitation culpa labore cupidatat culpa lorem consequat exercitation cillum amet irure fugiat aliqua adipiscing nostrud consectetur sunt ex magna reprehenderit officia dolore enim deserunt aliquip in mollit ea nulla aute et nulla cupidatat cillum incididunt consequat ullamco deserunt deserunt nostrud</p>
+        <p class="article-paragraph" data-paragraph="1">Consequat magna non est reprehenderit nulla labore excepteur minim ipsum dolor sint irure duis adipiscing veniam ut ea culpa tempor fugiat amet adipiscing do amet sed velit reprehenderit deserunt sed eiusmod</p>
+        <p class="article-paragraph" data-paragraph="2">Irure aute et do id culpa cupidatat veniam esse sed id dolore deserunt consequat ullamco consectetur eiusmod consequat mollit commodo anim nostrud excepteur anim qui mollit sed commodo elit labore sed cillum velit voluptate minim</p>
+        <p class="article-paragraph" data-paragraph="3">Esse sed consectetur esse incididunt aliquip consectetur esse ad elit ut aliqua ipsum excepteur laboris dolore est cillum et culpa quis sed laboris do pariatur ipsum tempor ad ipsum cillum ex labore cillum et tempor aliquip aliquip adipiscing reprehenderit labore sint nostrud adipiscing eiusmod culpa cillum ea occaecat amet officia consectetur irure qui proident ullamco sed occaecat</p>
+        <!-- Inline image placeholder -->
+        <figure class="article-image">
+          <img src="/images/article-2.jpg" alt="Proident dolore enim deserunt" width="800" height="400" loading="lazy">
+          <figcaption>Excepteur cillum velit duis reprehenderit fugiat aliquip in cillum</figcaption>
+        </figure>
+        <div class="article-tags">
+          <a href="/tags/text" class="tag">article</a>
+          <a href="/tags/secondary" class="tag">form</a>
+          <a href="/tags/warning" class="tag">hidden</a>
+          <a href="/tags/subtitle" class="tag">container</a>
+          <a href="/tags/btn" class="tag">title</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-3" data-author="author-3" data-date="2024-04-04">
+        <h3 class="article-title">Ex aliqua deserunt laboris sed magna</h3>
+        <div class="article-meta">
+          <span class="author">By Author 3</span>
+          <span class="date">2024-04-04</span>
+          <span class="category">Clothing</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Eiusmod cupidatat esse non aute qui irure ea dolor qui quis dolor proident velit id elit adipiscing exercitation elit amet voluptate do cupidatat adipiscing occaecat ad deserunt cupidatat aute culpa qui lorem labore eiusmod sunt exercitation amet do id ex non</p>
+        <p class="article-paragraph" data-paragraph="1">Aliqua nisi id dolore anim commodo quis dolor tempor qui do anim et sit exercitation velit veniam commodo et qui aliquip esse non consectetur adipiscing exercitation anim non consequat ipsum adipiscing sint est</p>
+        <p class="article-paragraph" data-paragraph="2">Voluptate velit occaecat quis nostrud proident est dolore consequat consequat magna velit laboris occaecat sunt in dolor velit velit commodo dolor nostrud elit labore ipsum nisi culpa ullamco</p>
+        <p class="article-paragraph" data-paragraph="3">Officia sit aute officia esse consequat minim ipsum nostrud consequat aliqua officia nulla tempor nulla pariatur adipiscing et officia incididunt excepteur non aliqua minim do ex esse aliqua reprehenderit est fugiat consequat aliquip qui dolor officia sunt laboris anim incididunt nisi incididunt esse consectetur ex dolore cupidatat eiusmod sed deserunt nulla nisi magna ea quis</p>
+        <div class="article-tags">
+          <a href="/tags/warning" class="tag">section</a>
+          <a href="/tags/warning" class="tag">article</a>
+          <a href="/tags/header" class="tag">sidebar</a>
+          <a href="/tags/col" class="tag">secondary</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-4" data-author="author-4" data-date="2024-05-05">
+        <h3 class="article-title">Ipsum ipsum mollit qui magna cillum</h3>
+        <div class="article-meta">
+          <span class="author">By Author 4</span>
+          <span class="date">2024-05-05</span>
+          <span class="category">Food</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Quis non ad laboris cillum excepteur sint in enim deserunt duis tempor excepteur enim aliqua culpa qui tempor incididunt sunt dolore fugiat aliquip veniam id dolore amet laboris eiusmod non cupidatat ex duis anim ea duis amet reprehenderit lorem dolore nostrud veniam nisi est amet anim veniam sit occaecat non nostrud velit</p>
+        <p class="article-paragraph" data-paragraph="1">Pariatur ad fugiat aute tempor tempor laboris ea mollit sit proident nulla excepteur aute aliquip deserunt reprehenderit lorem nostrud nulla tempor nulla fugiat nisi exercitation anim labore aute esse amet sint quis irure voluptate veniam labore excepteur duis cupidatat</p>
+        <p class="article-paragraph" data-paragraph="2">Adipiscing et ullamco minim sed ad quis nisi cupidatat do adipiscing sed qui culpa dolore qui proident fugiat velit ut consequat id et occaecat ut lorem</p>
+        <p class="article-paragraph" data-paragraph="3">In sit sint eiusmod est fugiat non veniam ipsum eiusmod in nulla et duis culpa aliquip mollit deserunt quis deserunt reprehenderit tempor duis non dolor sunt est cupidatat ullamco nostrud consequat quis exercitation nisi sit culpa magna esse commodo do ullamco duis sunt aliqua</p>
+        <p class="article-paragraph" data-paragraph="4">Sit proident magna deserunt pariatur nulla laboris cupidatat lorem deserunt adipiscing incididunt qui ea sed laboris dolore proident sed sunt et sed culpa fugiat est nostrud esse qui sit non velit minim minim laboris dolore ullamco anim veniam</p>
+        <!-- Inline image placeholder -->
+        <figure class="article-image">
+          <img src="/images/article-4.jpg" alt="Ad cupidatat deserunt amet" width="800" height="400" loading="lazy">
+          <figcaption>Commodo mollit qui elit proident reprehenderit consequat minim</figcaption>
+        </figure>
+        <div class="article-tags">
+          <a href="/tags/list" class="tag">section</a>
+          <a href="/tags/warning" class="tag">image</a>
+          <a href="/tags/hidden" class="tag">primary</a>
+          <a href="/tags/main" class="tag">footer</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-5" data-author="author-0" data-date="2024-06-06">
+        <h3 class="article-title">Non enim nisi in ipsum id ullamco esse tempor</h3>
+        <div class="article-meta">
+          <span class="author">By Author 0</span>
+          <span class="date">2024-06-06</span>
+          <span class="category">Sports</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Cupidatat do pariatur ullamco ad irure id id minim occaecat sunt labore occaecat labore irure ullamco dolor quis elit veniam esse id ad enim cupidatat aliqua incididunt proident ea adipiscing voluptate id non minim enim reprehenderit incididunt consequat duis tempor ut commodo culpa mollit eiusmod</p>
+        <p class="article-paragraph" data-paragraph="1">Ea sed veniam qui lorem esse sed occaecat commodo minim qui qui sunt dolor est aute anim aute nisi veniam occaecat minim ut culpa do cupidatat aliqua non pariatur fugiat consequat aliqua ad ex ut fugiat officia labore quis sit ad ex velit ullamco velit ea nulla lorem qui et aliqua est amet</p>
+        <p class="article-paragraph" data-paragraph="2">Tempor mollit labore dolor ut ullamco id qui enim aute sed ad sunt eiusmod elit nisi lorem incididunt exercitation ad et magna aliquip nostrud esse consectetur esse velit magna ad duis esse incididunt ullamco ad</p>
+        <div class="article-tags">
+          <a href="/tags/sidebar" class="tag">link</a>
+          <a href="/tags/icon" class="tag">container</a>
+          <a href="/tags/card" class="tag">secondary</a>
+          <a href="/tags/section" class="tag">form</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-6" data-author="author-1" data-date="2024-07-07">
+        <h3 class="article-title">Cillum ipsum aute dolore in sed culpa qui irure</h3>
+        <div class="article-meta">
+          <span class="author">By Author 1</span>
+          <span class="date">2024-07-07</span>
+          <span class="category">Health</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Cillum elit sed elit sint adipiscing aliqua duis qui enim labore ut sunt consequat aliqua labore cillum aute officia adipiscing tempor sed reprehenderit qui anim qui eiusmod esse amet deserunt excepteur sunt deserunt dolore lorem sed sed ut amet aliqua non mollit culpa qui ea</p>
+        <p class="article-paragraph" data-paragraph="1">Proident consequat nisi consequat ad dolor est elit deserunt excepteur nostrud laboris nostrud nostrud elit pariatur nostrud nisi sint quis excepteur anim sed sunt do esse quis</p>
+        <p class="article-paragraph" data-paragraph="2">Adipiscing aliquip laboris officia cillum ut adipiscing nisi esse exercitation labore elit mollit est irure ut non veniam do id lorem duis incididunt minim lorem pariatur incididunt irure cupidatat mollit sed esse tempor minim reprehenderit minim minim officia id ullamco consectetur id id eiusmod</p>
+        <p class="article-paragraph" data-paragraph="3">Lorem anim deserunt lorem proident dolore voluptate amet ad voluptate nulla non et consectetur mollit duis nulla eiusmod sint exercitation occaecat eiusmod nisi lorem voluptate occaecat ullamco</p>
+        <!-- Inline image placeholder -->
+        <figure class="article-image">
+          <img src="/images/article-6.jpg" alt="Sunt amet dolor quis" width="800" height="400" loading="lazy">
+          <figcaption>Exercitation nisi esse minim enim sint</figcaption>
+        </figure>
+        <div class="article-tags">
+          <a href="/tags/sidebar" class="tag">warning</a>
+          <a href="/tags/text" class="tag">article</a>
+          <a href="/tags/header" class="tag">hidden</a>
+          <a href="/tags/list" class="tag">article</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-7" data-author="author-2" data-date="2024-08-08">
+        <h3 class="article-title">Cillum mollit aute reprehenderit esse voluptate consequat est</h3>
+        <div class="article-meta">
+          <span class="author">By Author 2</span>
+          <span class="date">2024-08-08</span>
+          <span class="category">Health</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Nostrud tempor veniam pariatur est exercitation culpa voluptate enim non ut incididunt irure elit nisi commodo ad eiusmod elit occaecat irure pariatur adipiscing nisi deserunt elit dolor proident sunt incididunt fugiat laboris dolor sed esse reprehenderit dolor voluptate irure sint aute et eiusmod proident enim ut fugiat tempor sit minim</p>
+        <p class="article-paragraph" data-paragraph="1">Velit commodo anim ullamco non velit ullamco consequat qui irure reprehenderit tempor amet magna ex mollit veniam mollit in do mollit adipiscing consequat aliqua ut minim velit anim incididunt</p>
+        <p class="article-paragraph" data-paragraph="2">Anim nisi laboris ea magna cupidatat pariatur culpa aute dolor laboris exercitation reprehenderit pariatur consectetur occaecat mollit minim cupidatat nisi sint deserunt tempor magna nulla do irure in eiusmod aliqua ea nisi labore</p>
+        <p class="article-paragraph" data-paragraph="3">Est voluptate dolore duis deserunt do commodo aute commodo voluptate dolor sunt commodo ipsum in quis commodo exercitation do ea nisi est et commodo nisi esse magna voluptate</p>
+        <div class="article-tags">
+          <a href="/tags/section" class="tag">wrapper</a>
+          <a href="/tags/image" class="tag">row</a>
+          <a href="/tags/input" class="tag">success</a>
+          <a href="/tags/text" class="tag">item</a>
+          <a href="/tags/panel" class="tag">success</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-8" data-author="author-3" data-date="2024-09-09">
+        <h3 class="article-title">Nostrud lorem officia ullamco elit elit ullamco elit do</h3>
+        <div class="article-meta">
+          <span class="author">By Author 3</span>
+          <span class="date">2024-09-09</span>
+          <span class="category">Sports</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Voluptate id ex ut nulla ea proident ullamco magna ex eiusmod consequat occaecat exercitation incididunt cupidatat nostrud dolore fugiat occaecat adipiscing ut cillum labore consequat velit voluptate anim esse irure minim est nisi cupidatat exercitation nostrud tempor eiusmod in eiusmod sed ad anim est ex amet</p>
+        <p class="article-paragraph" data-paragraph="1">Dolore elit consectetur culpa aliqua ullamco officia amet et aute non nulla excepteur dolore mollit non ea dolore laboris proident amet occaecat excepteur eiusmod labore aliqua aliquip aute veniam sit duis velit tempor enim irure ad esse id do enim adipiscing anim</p>
+        <p class="article-paragraph" data-paragraph="2">Occaecat magna dolor adipiscing ut et commodo labore pariatur qui magna excepteur sunt voluptate do consectetur pariatur non ad sint id aute aliquip do duis aliquip non labore quis aliquip consectetur ad nostrud cupidatat eiusmod dolor consectetur elit ea ullamco qui sint pariatur in in adipiscing deserunt nostrud id ea minim non</p>
+        <!-- Inline image placeholder -->
+        <figure class="article-image">
+          <img src="/images/article-8.jpg" alt="Ipsum ullamco ullamco ad" width="800" height="400" loading="lazy">
+          <figcaption>Reprehenderit et pariatur velit esse excepteur adipiscing cillum eiusmod do</figcaption>
+        </figure>
+        <div class="article-tags">
+          <a href="/tags/row" class="tag">btn</a>
+          <a href="/tags/footer" class="tag">primary</a>
+          <a href="/tags/item" class="tag">text</a>
+        </div>
+      </article>
+
+      <article class="article" id="article-9" data-author="author-4" data-date="2024-10-10">
+        <h3 class="article-title">Do ex reprehenderit et velit amet ullamco duis</h3>
+        <div class="article-meta">
+          <span class="author">By Author 4</span>
+          <span class="date">2024-10-10</span>
+          <span class="category">Toys</span>
+        </div>
+        <p class="article-paragraph" data-paragraph="0">Non laboris in do labore aliquip enim minim aliquip nisi anim officia sint lorem aute mollit lorem ullamco sed consectetur id labore reprehenderit qui esse enim quis eiusmod excepteur cillum qui laboris ad consectetur magna ad excepteur enim dolor nostrud ex ad magna excepteur non pariatur consequat aliquip commodo exercitation</p>
+        <p class="article-paragraph" data-paragraph="1">Sint aliqua anim nisi lorem velit velit in sunt ullamco anim pariatur adipiscing dolore id enim deserunt deserunt sed officia est voluptate pariatur veniam sit cillum</p>
+        <p class="article-paragraph" data-paragraph="2">Quis consequat pariatur lorem enim qui consectetur consectetur excepteur consequat consectetur mollit proident nostrud nulla do do et aliqua dolore sit sed reprehenderit ea voluptate excepteur occaecat enim cillum est ex esse deserunt lorem minim velit minim sunt officia</p>
+        <p class="article-paragraph" data-paragraph="3">Qui commodo aute amet et ad do est non sint cillum id labore elit fugiat duis duis et ut laboris fugiat enim dolor nisi do minim labore cupidatat excepteur est eiusmod</p>
+        <div class="article-tags">
+          <a href="/tags/form" class="tag">row</a>
+          <a href="/tags/panel" class="tag">label</a>
+          <a href="/tags/list" class="tag">card</a>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- Glossary -->
+    <section id="glossary" class="glossary-section">
+      <h2>Glossary of Terms</h2>
+      <dl class="glossary-list">
+        <dt class="term" id="term-0">Esse</dt>
+        <dd class="definition">Dolore sint est nisi sunt fugiat nisi esse sint non deserunt lorem</dd>
+        <dt class="term" id="term-1">Nisi</dt>
+        <dd class="definition">Consectetur commodo lorem mollit laboris aute voluptate qui qui consectetur dolor esse amet sunt est tempor ea sit occaecat aliqua tempor ullamco non sed lorem</dd>
+        <dt class="term" id="term-2">Amet</dt>
+        <dd class="definition">Aliquip dolore veniam id reprehenderit et ipsum nostrud magna occaecat sint cupidatat ea incididunt pariatur tempor reprehenderit est cupidatat in cillum culpa</dd>
+        <dt class="term" id="term-3">Fugiat mollit</dt>
+        <dd class="definition">Reprehenderit lorem commodo sunt quis ullamco et aute adipiscing commodo commodo reprehenderit nisi</dd>
+        <dt class="term" id="term-4">Nisi occaecat</dt>
+        <dd class="definition">Non qui eiusmod lorem aliqua elit ex fugiat reprehenderit mollit non nostrud cillum voluptate deserunt deserunt fugiat est</dd>
+        <dt class="term" id="term-5">Commodo</dt>
+        <dd class="definition">Sit ipsum pariatur nisi pariatur fugiat pariatur laboris labore adipiscing cupidatat ex cupidatat ipsum irure do velit ut adipiscing officia ad est reprehenderit incididunt</dd>
+        <dt class="term" id="term-6">Mollit</dt>
+        <dd class="definition">Elit exercitation do exercitation quis ullamco et magna elit ullamco excepteur culpa non non fugiat</dd>
+        <dt class="term" id="term-7">Aute</dt>
+        <dd class="definition">Sit proident et fugiat irure cupidatat fugiat sunt exercitation commodo sunt minim ea qui voluptate irure aliquip sunt reprehenderit elit excepteur minim do</dd>
+        <dt class="term" id="term-8">Adipiscing veniam</dt>
+        <dd class="definition">Minim ad nisi consequat non occaecat elit magna in nostrud aliquip excepteur</dd>
+        <dt class="term" id="term-9">Do</dt>
+        <dd class="definition">Amet veniam sed cillum fugiat incididunt eiusmod nulla aliquip sunt nulla non</dd>
+        <dt class="term" id="term-10">Sed commodo</dt>
+        <dd class="definition">Cillum culpa cillum ipsum esse nisi sunt tempor ex incididunt ut nostrud velit labore qui magna proident</dd>
+        <dt class="term" id="term-11">Lorem reprehenderit</dt>
+        <dd class="definition">Ut est consectetur eiusmod dolor duis do commodo sint adipiscing non mollit aliquip est enim do anim commodo lorem nisi consectetur</dd>
+        <dt class="term" id="term-12">Est culpa</dt>
+        <dd class="definition">Aliquip laboris officia voluptate officia tempor tempor id excepteur sunt nisi exercitation exercitation cupidatat qui nulla elit sint cupidatat aliqua dolore proident</dd>
+        <dt class="term" id="term-13">Cillum</dt>
+        <dd class="definition">Cupidatat irure mollit in sint adipiscing ut nulla non duis laboris veniam enim irure nisi qui elit ea</dd>
+        <dt class="term" id="term-14">Incididunt elit</dt>
+        <dd class="definition">Deserunt id est ipsum sit sunt excepteur deserunt esse exercitation aute duis sed elit ullamco</dd>
+      </dl>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/careers">Careers</a></li>
+            <li><a href="/press">Press</a></li>
+            <li><a href="/blog">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="/help">Help Center</a></li>
+            <li><a href="/docs">Documentation</a></li>
+            <li><a href="/status">Status</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy">Privacy Policy</a></li>
+            <li><a href="/terms">Terms of Service</a></li>
+            <li><a href="/cookies">Cookie Policy</a></li>
+            <li><a href="/gdpr">GDPR</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; 2024 GreedyGuy Compression. All rights reserved.</p>
+      <p>Built with care by the context-mixing compression team.</p>
+    </footer>
+
+  </div>
+
+  <!-- Hidden modals -->
+  <div class="modal" id="modal-0" data-modal="0" role="dialog" aria-hidden="true" aria-labelledby="modal-0-title">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-0-title">Anim elit occaecat cillum eiusmod</h3>
+        <button class="modal-close" data-dismiss="modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Mollit non nostrud anim est exercitation nostrud eiusmod minim dolor pariatur fugiat cupidatat laboris et sint in proident veniam magna ad ex reprehenderit culpa amet culpa commodo nisi aute ea exercitation non</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-action="confirm">Confirm</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-1" data-modal="1" role="dialog" aria-hidden="true" aria-labelledby="modal-1-title">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-1-title">Cillum labore ea id sit</h3>
+        <button class="modal-close" data-dismiss="modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Aute irure velit esse ipsum sed voluptate laboris nisi incididunt dolor aute consectetur ad ullamco cupidatat exercitation proident quis qui incididunt sunt non sed nulla labore fugiat consequat reprehenderit voluptate dolore sunt sint sunt</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-action="confirm">Confirm</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-2" data-modal="2" role="dialog" aria-hidden="true" aria-labelledby="modal-2-title">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-2-title">In dolore nulla</h3>
+        <button class="modal-close" data-dismiss="modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Occaecat irure esse elit irure minim tempor irure non culpa labore reprehenderit pariatur ullamco sit eiusmod reprehenderit irure dolor incididunt est non</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-action="confirm">Confirm</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-3" data-modal="3" role="dialog" aria-hidden="true" aria-labelledby="modal-3-title">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-3-title">Laboris proident cupidatat ipsum excepteur</h3>
+        <button class="modal-close" data-dismiss="modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Enim anim ex consectetur aute sit elit elit deserunt excepteur consequat nulla deserunt lorem velit cillum amet cupidatat magna proident occaecat nisi sit adipiscing nisi est consequat deserunt</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-action="confirm">Confirm</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-4" data-modal="4" role="dialog" aria-hidden="true" aria-labelledby="modal-4-title">
+    <div class="modal-overlay" data-dismiss="modal"></div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-4-title">Non labore aliquip</h3>
+        <button class="modal-close" data-dismiss="modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Anim irure amet dolor consectetur eiusmod aute minim consequat dolor esse culpa pariatur veniam ullamco lorem lorem dolor amet exercitation eiusmod cillum et tempor</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-action="confirm">Confirm</button>
+        <button class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script data -->
+  <script type="application/json" id="app-config">
+  {
+    "apiEndpoint": "https://api.example.com/v2",
+    "debug": false,
+    "features": {
+      "darkMode": true,
+      "notifications": true,
+      "analytics": true,
+      "experimentalFeatures": false
+    },
+    "pagination": {
+      "pageSize": 20,
+      "maxPages": 100
+    }
+  }
+  </script>
+
+</body>
+</html>

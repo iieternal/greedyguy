@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreedyGuy Web — ES Module Example</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 700px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; }
+    pre { background: #f6f8fa; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+    code { font-family: 'Fira Code', monospace; }
+    .ok { color: #1a7f37; } .err { color: #cf222e; }
+    button { padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>GreedyGuy Web — ES Module</h1>
+  <p>Using <code>import</code> from the <code>src/index.js</code> module.</p>
+  <button id="run">Run Compression Demo</button>
+  <pre id="output">Click the button above...</pre>
+
+  <h2>Code</h2>
+  <pre><code>import { init, compressText, decompressText, isCompressed, status } from '../src/index.js';
+
+await init({ wasmUrl: '../dist/greedyguy.wasm' });
+
+const text = 'Hello World! GreedyGuy compresses web content.';
+const compressed = compressText(text);
+const restored = decompressText(compressed);
+
+console.log(`${text.length} → ${compressed.length} bytes (${(text.length/compressed.length).toFixed(1)}x)`);
+console.log('Roundtrip OK:', text === restored);
+console.log('Has GGW1 header:', isCompressed(compressed));</code></pre>
+
+  <script type="module">
+    import { init, compressText, decompressText, isCompressed, status } from '../src/index.js';
+
+    document.getElementById('run').addEventListener('click', async () => {
+      const out = document.getElementById('output');
+      out.textContent = '⏳ Initializing WASM...\n';
+
+      try {
+        await init({ wasmUrl: '../dist/greedyguy.wasm' });
+        out.textContent += '✅ WASM loaded\n\n';
+
+        const samples = [
+          'Hello World! GreedyGuy compresses web content better than gzip.',
+          '<html><head><title>Test</title></head><body><h1>Hello</h1><p>This is a test page with some HTML content that should compress well.</p></body></html>',
+          JSON.stringify({ users: Array.from({length: 20}, (_, i) => ({ id: i, name: `User ${i}`, email: `user${i}@example.com`, active: true })) }),
+          'function fibonacci(n) { if (n <= 1) return n; return fibonacci(n - 1) + fibonacci(n - 2); } console.log(fibonacci(10));',
+        ];
+
+        const labels = ['Plain text', 'HTML', 'JSON', 'JavaScript'];
+
+        for (let i = 0; i < samples.length; i++) {
+          const text = samples[i];
+          const t0 = performance.now();
+          const compressed = compressText(text);
+          const ms = (performance.now() - t0).toFixed(1);
+          const restored = decompressText(compressed);
+          const ok = text === restored;
+          const ratio = (new TextEncoder().encode(text).length / compressed.length).toFixed(1);
+
+          out.textContent +=
+            `${labels[i]}:\n` +
+            `  Original:   ${new TextEncoder().encode(text).length} bytes\n` +
+            `  Compressed: ${compressed.length} bytes (${ratio}x, ${ms}ms)\n` +
+            `  Roundtrip:  ${ok ? '✅ OK' : '❌ FAIL'}\n` +
+            `  GGW1 magic: ${isCompressed(compressed)}\n\n`;
+        }
+
+        const s = status();
+        out.textContent += `Module status: ${JSON.stringify(s)}\n`;
+      } catch (err) {
+        out.textContent += '❌ Error: ' + err.message + '\n' + err.stack;
+      }
+    });
+  </script>
+</body>
+</html>

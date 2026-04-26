@@ -1,0 +1,61 @@
+{
+  "name": "gg-cache",
+  "version": "1.0.0",
+  "description": "Compressed cache manager powered by GreedyGuy WASM — LRU+TTL cache with transparent compression for Express, Fastify, Electron, and browser apps",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./types/index.d.ts"
+    },
+    "./middleware/express": "./src/middleware/express.js",
+    "./middleware/fastify": "./src/middleware/fastify.js",
+    "./middleware/fastify-request": "./src/middleware/fastify-request.js",
+    "./middleware/express-request": "./src/middleware/express-request.js",
+    "./middleware/electron": "./src/middleware/electron.js",
+    "./middleware/fetch": "./src/middleware/fetch.js",
+    "./stores/memory": "./src/stores/memory.js",
+    "./stores/fs": "./src/stores/fs.js",
+    "./strategies": "./src/strategies.js"
+  },
+  "files": [
+    "src/",
+    "types/",
+    "wasm/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/cache.test.js && node test/fastify.test.js"
+  },
+  "keywords": [
+    "cache", "compression", "lru", "ttl", "wasm", "greedyguy",
+    "electron", "express", "fastify", "middleware", "service-worker",
+    "fetch", "compressed-cache", "lossless"
+  ],
+  "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niceguydave/gg-cache"
+  },
+  "homepage": "https://github.com/niceguydave/gg-cache#readme",
+  "bugs": {
+    "url": "https://github.com/niceguydave/gg-cache/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "fastify": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "fastify": {
+      "optional": true
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "greedyguy-web",
+  "version": "1.0.0",
+  "description": "GreedyGuy compression for websites — drop-in script tag or ES module. Context-mixing + arithmetic coding in 29KB of WASM.",
+  "type": "module",
+  "main": "dist/greedyguy-web.iife.js",
+  "module": "src/index.js",
+  "types": "src/index.d.ts",
+  "unpkg": "dist/greedyguy-web.iife.js",
+  "jsdelivr": "dist/greedyguy-web.iife.js",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "script": "./dist/greedyguy-web.iife.js",
+      "types": "./src/index.d.ts"
+    },
+    "./wasm": "./dist/greedyguy.wasm",
+    "./iife": "./dist/greedyguy-web.iife.js"
+  },
+  "files": [
+    "src/",
+    "dist/",
+    "examples/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "test": "node test/test.js",
+    "serve": "npx serve -p 8080 ."
+  },
+  "keywords": [
+    "compression", "wasm", "webassembly", "greedyguy",
+    "browser", "script-tag", "cdn", "vanilla-js",
+    "decompression", "context-mixing", "arithmetic-coding",
+    "lossless", "web", "no-framework"
+  ],
+  "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niceguydave/greedyguy-web"
+  },
+  "homepage": "https://github.com/niceguydave/greedyguy-web#readme",
+  "bugs": {
+    "url": "https://github.com/niceguydave/greedyguy-web/issues"
+  },
+  "sideEffects": false
+}

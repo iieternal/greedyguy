@@ -1,0 +1,17 @@
+testdata/
+bench_*.sh
+sweep_*.sh
+fetch_real.sh
+test_lz77.sh
+*.o
+*.a
+MOE_RESEARCH.md
+RESEARCH.md
+wasm/gg_web.c
+wasm/build.sh
+wasm/demo/
+wasm/test_wasm.mjs
+wasm/gg-sw.js
+wasm/vite-plugin-greedyguy.js
+.git
+.github

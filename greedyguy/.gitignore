@@ -1,0 +1,27 @@
+# Build artifacts
+greedyguy
+greedyguy.exe
+greedyguy_v2
+libgreedyguy.a
+*.o
+*.obj
+
+# Temp / test
+/tmp/
+*.gg
+*.gg2
+
+# Node
+node_modules/
+package-lock.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Test data (large)
+testdata/

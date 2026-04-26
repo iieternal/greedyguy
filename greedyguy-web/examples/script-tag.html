@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreedyGuy Web — Script Tag Example</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; background: #0d1117; color: #c9d1d9; }
+    h1 { color: #58a6ff; margin-bottom: 0.5rem; }
+    .subtitle { color: #8b949e; margin-bottom: 2rem; }
+    .card { background: #161b22; border: 1px solid #30363d; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; }
+    .card h2 { color: #58a6ff; font-size: 1.1rem; margin-bottom: 1rem; }
+    textarea { width: 100%; height: 120px; background: #0d1117; color: #c9d1d9; border: 1px solid #30363d; border-radius: 6px; padding: 0.75rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; resize: vertical; }
+    button { background: #238636; color: #fff; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem; margin: 0.5rem 0.5rem 0.5rem 0; }
+    button:hover { background: #2ea043; }
+    button:disabled { background: #21262d; color: #484f58; cursor: not-allowed; }
+    .result { background: #0d1117; border: 1px solid #30363d; border-radius: 6px; padding: 0.75rem; margin-top: 0.75rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; white-space: pre-wrap; word-break: break-all; min-height: 2rem; }
+    .stat { display: inline-block; background: #1f6feb22; color: #58a6ff; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.8rem; margin: 0.25rem; }
+    .stats { margin-top: 0.75rem; }
+    #status { padding: 0.5rem 1rem; border-radius: 6px; margin-bottom: 1rem; }
+    .loading { background: #f0883e22; color: #f0883e; }
+    .ready { background: #23863622; color: #3fb950; }
+    .error { background: #f8514922; color: #f85149; }
+    .drop-zone { border: 2px dashed #30363d; border-radius: 8px; padding: 2rem; text-align: center; color: #8b949e; cursor: pointer; transition: all 0.2s; }
+    .drop-zone.dragover { border-color: #58a6ff; background: #1f6feb11; color: #58a6ff; }
+  </style>
+</head>
+<body>
+  <h1>🦎 GreedyGuy Web</h1>
+  <p class="subtitle">Context-mixing compression in 29KB of WASM — no bundler, no framework, just a &lt;script&gt; tag.</p>
+
+  <div id="status" class="loading">⏳ Loading WASM module...</div>
+
+  <!-- Text Compression -->
+  <div class="card">
+    <h2>📝 Text Compression</h2>
+    <textarea id="input" placeholder="Paste or type text here...">GreedyGuy uses context mixing with arithmetic coding to achieve compression ratios that beat xz-9 on web content. It predicts each bit using a mix of byte-hash context models, an LZ77 match finder, and a 4-stage APM cascade. The model adapts online as it processes data.</textarea>
+    <div>
+      <button id="btn-compress" disabled>Compress</button>
+      <button id="btn-roundtrip" disabled>Roundtrip Test</button>
+    </div>
+    <div class="stats" id="text-stats"></div>
+    <div class="result" id="text-result"></div>
+  </div>
+
+  <!-- File Compression -->
+  <div class="card">
+    <h2>📁 File Compression</h2>
+    <div class="drop-zone" id="drop-zone">
+      Drop a file here or click to select<br>
+      <small>(HTML, CSS, JS, JSON, SVG, TXT — max 10MB)</small>
+      <input type="file" id="file-input" hidden>
+    </div>
+    <div class="stats" id="file-stats"></div>
+    <div class="result" id="file-result"></div>
+  </div>
+
+  <!-- Fetch + Decompress -->
+  <div class="card">
+    <h2>🌐 Fetch &amp; Decompress</h2>
+    <p style="color:#8b949e; margin-bottom:0.75rem;">Compress text above, then decompress the base64 payload below.</p>
+    <textarea id="b64-input" placeholder="Paste a base64-encoded GGW1 payload here..."></textarea>
+    <button id="btn-decode-b64" disabled>Decompress Base64</button>
+    <div class="result" id="b64-result"></div>
+  </div>
+
+  <!-- Status -->
+  <div class="card">
+    <h2>ℹ️ Module Info</h2>
+    <div class="result" id="info"></div>
+  </div>
+
+  <!-- Load GreedyGuy via script tag -->
+  <script src="../dist/greedyguy-web.iife.js"></script>
+  <script>
+    const $ = (id) => document.getElementById(id);
+
+    // Initialize
+    (async () => {
+      try {
+        await GreedyGuy.init({
+          wasmUrl: '../dist/greedyguy.wasm',
+          glueUrl: '../dist/greedyguy-glue.js',
+        });
+        $('status').className = 'ready';
+        $('status').textContent = '✅ WASM loaded — ready to compress';
+        $('btn-compress').disabled = false;
+        $('btn-roundtrip').disabled = false;
+        $('btn-decode-b64').disabled = false;
+
+        const s = GreedyGuy.status();
+        $('info').textContent =
+          `Version: ${GreedyGuy.VERSION}\n` +
+          `Initialized: ${s.initialized}\n` +
+          `WASM supported: ${s.supported}\n` +
+          `Max input: ${(50).toFixed(0)} MB\n` +
+          `Max decompress: ${(256).toFixed(0)} MB\n` +
+          `WASM size: ~29 KB\n` +
+          `RAM usage: ~20 MB`;
+      } catch (err) {
+        $('status').className = 'error';
+        $('status').textContent = '❌ Failed to load: ' + err.message;
+      }
+    })();
+
+    // Text compression
+    $('btn-compress').addEventListener('click', () => {
+      const text = $('input').value;
+      if (!text) return;
+      const t0 = performance.now();
+      const compressed = GreedyGuy.compressText(text);
+      const ms = (performance.now() - t0).toFixed(1);
+      const origSize = new TextEncoder().encode(text).length;
+      const ratio = (origSize / compressed.length).toFixed(1);
+      const b64 = GreedyGuy.compressToBase64(text);
+
+      $('text-stats').innerHTML =
+        `<span class="stat">Original: ${origSize.toLocaleString()} B</span>` +
+        `<span class="stat">Compressed: ${compressed.length.toLocaleString()} B</span>` +
+        `<span class="stat">Ratio: ${ratio}x</span>` +
+        `<span class="stat">Time: ${ms} ms</span>`;
+      $('text-result').textContent = `Base64 (${b64.length} chars):\n${b64}`;
+      $('b64-input').value = b64;
+    });
+
+    $('btn-roundtrip').addEventListener('click', () => {
+      const text = $('input').value;
+      if (!text) return;
+      const compressed = GreedyGuy.compressText(text);
+      const decompressed = GreedyGuy.decompressText(compressed);
+      const ok = text === decompressed;
+      $('text-result').textContent = ok
+        ? '✅ Roundtrip OK — decompressed matches original perfectly'
+        : '❌ Roundtrip FAILED — data mismatch!';
+    });
+
+    // File compression
+    const dropZone = $('drop-zone');
+    const fileInput = $('file-input');
+
+    dropZone.addEventListener('click', () => fileInput.click());
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+    });
+    fileInput.addEventListener('change', () => { if (fileInput.files.length) handleFile(fileInput.files[0]); });
+
+    async function handleFile(file) {
+      if (file.size > 10 * 1024 * 1024) {
+        $('file-result').textContent = '❌ File too large (max 10MB)';
+        return;
+      }
+
+      const data = new Uint8Array(await file.arrayBuffer());
+      const t0 = performance.now();
+      const compressed = GreedyGuy.compress(data);
+      const compressMs = (performance.now() - t0).toFixed(1);
+
+      const t1 = performance.now();
+      const decompressed = GreedyGuy.decompress(compressed);
+      const decompressMs = (performance.now() - t1).toFixed(1);
+
+      const ratio = (data.length / compressed.length).toFixed(1);
+      const saved = ((1 - compressed.length / data.length) * 100).toFixed(1);
+
+      // Verify roundtrip
+      let ok = data.length === decompressed.length;
+      if (ok) {
+        for (let i = 0; i < data.length; i++) {
+          if (data[i] !== decompressed[i]) { ok = false; break; }
+        }
+      }
+
+      $('file-stats').innerHTML =
+        `<span class="stat">${file.name}</span>` +
+        `<span class="stat">Original: ${data.length.toLocaleString()} B</span>` +
+        `<span class="stat">Compressed: ${compressed.length.toLocaleString()} B</span>` +
+        `<span class="stat">Ratio: ${ratio}x</span>` +
+        `<span class="stat">Saved: ${saved}%</span>` +
+        `<span class="stat">Compress: ${compressMs} ms</span>` +
+        `<span class="stat">Decompress: ${decompressMs} ms</span>`;
+      $('file-result').textContent = ok
+        ? '✅ Roundtrip verified — perfect match'
+        : '❌ Roundtrip FAILED!';
+    }
+
+    // Base64 decode
+    $('btn-decode-b64').addEventListener('click', () => {
+      const b64 = $('b64-input').value.trim();
+      if (!b64) return;
+      try {
+        const text = GreedyGuy.decompressBase64Text(b64);
+        $('b64-result').textContent = text;
+      } catch (err) {
+        $('b64-result').textContent = '❌ ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

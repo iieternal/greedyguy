@@ -1,0 +1,5 @@
+test/
+build.js
+.git
+.github
+*.tgz

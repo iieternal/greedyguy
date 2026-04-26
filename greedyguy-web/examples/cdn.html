@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GreedyGuy Web — CDN Example</title>
+</head>
+<body>
+  <h1>CDN Usage Example</h1>
+  <p>Load GreedyGuy directly from a CDN — no install needed.</p>
+  <pre id="output">Loading from CDN...</pre>
+
+  <!--
+    In production, use one of:
+      https://unpkg.com/greedyguy-web/dist/greedyguy-web.iife.js
+      https://cdn.jsdelivr.net/npm/greedyguy-web/dist/greedyguy-web.iife.js
+
+    For this demo, we load locally:
+  -->
+  <script src="../dist/greedyguy-web.iife.js"></script>
+  <script>
+    (async () => {
+      const out = document.getElementById('output');
+
+      // Check support
+      if (!GreedyGuy.isSupported()) {
+        out.textContent = 'WebAssembly not supported in this browser.';
+        return;
+      }
+
+      // Init with explicit WASM URL (CDN would be the unpkg/jsdelivr URL)
+      await GreedyGuy.init({
+        wasmUrl: '../dist/greedyguy.wasm',
+        glueUrl: '../dist/greedyguy-glue.js',
+      });
+
+      // Compress some JSON
+      const data = JSON.stringify({
+        timestamp: Date.now(),
+        items: Array.from({ length: 100 }, (_, i) => ({
+          id: i,
+          title: `Item ${i}`,
+          description: `This is the description for item number ${i}`,
+          tags: ['web', 'compression', 'demo'],
+        })),
+      });
+
+      const compressed = GreedyGuy.compressText(data);
+      const decompressed = GreedyGuy.decompressText(compressed);
+
+      out.textContent =
+        `Original:     ${data.length.toLocaleString()} bytes\n` +
+        `Compressed:   ${compressed.length.toLocaleString()} bytes\n` +
+        `Ratio:        ${(data.length / compressed.length).toFixed(1)}x\n` +
+        `Roundtrip OK: ${data === decompressed}\n\n` +
+        `Version: ${GreedyGuy.VERSION}\n` +
+        `Status:  ${JSON.stringify(GreedyGuy.status())}`;
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "name": "greedyguy-wasm",
+  "version": "1.0.0",
+  "description": "GreedyGuy compression/decompression in the browser via WebAssembly. Context-mixing + arithmetic coding, ~29KB WASM.",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "types": "src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts"
+    },
+    "./wasm": "./dist/greedyguy.wasm",
+    "./glue": "./dist/greedyguy.js"
+  },
+  "files": [
+    "src/",
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/wasm.test.js"
+  },
+  "keywords": [
+    "compression",
+    "wasm",
+    "webassembly",
+    "greedyguy",
+    "browser",
+    "decompression",
+    "context-mixing",
+    "arithmetic-coding",
+    "lossless",
+    "web"
+  ],
+  "author": "QHBhdWx0c3Vubnk= (base64 -d to reveal)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/niceguydave/greedyguy"
+  },
+  "homepage": "https://github.com/niceguydave/greedyguy#readme",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
